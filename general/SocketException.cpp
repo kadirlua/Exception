@@ -1,3 +1,25 @@
+// MIT License
+
+// Copyright (c) 2021-2024 kadirlua
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
 #include "SocketException.h"
 #ifdef _WIN32
 #include <Windows.h>
@@ -13,7 +35,6 @@ namespace sdk{
     namespace general
     {
         SocketException::SocketException(int err_code) noexcept :
-            BaseException(),
             m_error_code{ err_code }
         {
             m_error_msg = GetWSALastErrorMessage();
@@ -46,14 +67,15 @@ namespace sdk{
             std::string strErrMsg;
 #ifdef _WIN32
             char* err_msg = nullptr;
-            if (!FormatMessageA(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
+            if (FormatMessageA(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
                 nullptr,
                 m_error_code,
                 0,
                 (LPSTR)&err_msg,
                 0,
-                nullptr))
-                return strErrMsg;
+                nullptr) == 0U) {
+				return strErrMsg;
+			}
 
             strErrMsg = err_msg;
             LocalFree(err_msg);
@@ -69,7 +91,7 @@ namespace sdk{
             return strErrMsg;
         }
 
-        SecureSocketException::SecureSocketException(int err_code) noexcept :
+        SSLSocketException::SSLSocketException(int err_code) noexcept :
             SocketException(err_code)
         {
 #if OPENSSL_SUPPORTED
@@ -80,22 +102,22 @@ namespace sdk{
 #endif // OPENSSL_SUPPORTED
         }
 
-        SecureSocketException::SecureSocketException(int err_code, std::string&& err_msg) noexcept :
+        SSLSocketException::SSLSocketException(int err_code, std::string&& err_msg) noexcept :
             SocketException(err_code, std::move(err_msg))
         {
         }
 
-        SecureSocketException::SecureSocketException(int err_code, const std::string& err_msg) noexcept :
+        SSLSocketException::SSLSocketException(int err_code, const std::string& err_msg) noexcept :
             SocketException(err_code, err_msg)
         {
         }
 
-        SecureSocketException::SecureSocketException(std::string&& err_msg) noexcept :
+        SSLSocketException::SSLSocketException(std::string&& err_msg) noexcept :
             SocketException(std::move(err_msg))
         {
         }
 
-        SecureSocketException::SecureSocketException(const std::string& err_msg) noexcept :
+        SSLSocketException::SSLSocketException(const std::string& err_msg) noexcept :
             SocketException(err_msg)
         {
         }
