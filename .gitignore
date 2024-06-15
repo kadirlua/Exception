@@ -61,9 +61,9 @@ out
 Debug
 Release
 x64
-Socket/Debug
-Socket/Release
-Socket/x64
+Exception/Debug
+Exception/Release
+Exception/x64
 *.user
 *.ncb
 *.suo
