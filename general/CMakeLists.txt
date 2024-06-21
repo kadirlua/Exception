@@ -18,3 +18,15 @@ if (BUILD_SHARED_LIBS)
 else()
 	add_library(${LIBRARY_NAME} STATIC ${PROJECT_GENERAL_SOURCES})
 endif()
+
+# Set the library version properties
+set_target_properties(${LIBRARY_NAME} PROPERTIES
+    VERSION ${PROJECT_VERSION}
+    SOVERSION 1
+)
+
+# configure header template
+configure_file(
+    "${PROJECT_SOURCE_DIR}/general/version.h.in"
+    "${PROJECT_BINARY_DIR}/general/version.h"
+)
