@@ -30,3 +30,10 @@ configure_file(
     "${PROJECT_SOURCE_DIR}/general/version.h.in"
     "${PROJECT_BINARY_DIR}/general/version.h"
 )
+
+# Custom target to copy the CHANGELOG.md file to the build directory
+add_custom_target(copy_changelog ALL
+    COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/CHANGELOG.md ${CMAKE_BINARY_DIR}/CHANGELOG.md
+    DEPENDS ${PROJECT_SOURCE_DIR}/CHANGELOG.md
+    COMMENT "Copying CHANGELOG.md to the build directory"
+)
