@@ -19,6 +19,10 @@ else()
 	add_library(${LIBRARY_NAME} STATIC ${PROJECT_GENERAL_SOURCES})
 endif()
 
+if (MSVC)
+    target_compile_options(${LIBRARY_NAME} PRIVATE "/Zc:__cplusplus")
+endif()
+
 # Set the library version properties
 set_target_properties(${LIBRARY_NAME} PROPERTIES
     VERSION ${PROJECT_VERSION}
