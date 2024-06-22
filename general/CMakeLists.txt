@@ -74,7 +74,7 @@ install(TARGETS ${LIBRARY_NAME}
 # Export the targets for other projects to find
 install(EXPORT ExceptionTargets
         FILE ExceptionTargets.cmake
-        NAMESPACE WorkerQueue::
+        NAMESPACE Exception::
         DESTINATION lib/cmake/Exception)
 
 # Create a config file for find_package
