@@ -18,9 +18,6 @@
     <ClCompile Include="..\general\BaseException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\general\SocketException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\examples\exception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -30,9 +27,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\general\ExceptionExport.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\general\SocketException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

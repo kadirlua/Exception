@@ -3,7 +3,6 @@ set(PROJECT_GENERAL_DIR ${PROJECT_DIR}/general)
 
 set(PROJECT_GENERAL_SOURCES
 	${PROJECT_GENERAL_DIR}/BaseException.cpp
-	${PROJECT_GENERAL_DIR}/SocketException.cpp
 )
 
 # build options

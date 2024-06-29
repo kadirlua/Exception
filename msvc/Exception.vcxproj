@@ -141,12 +141,10 @@
   <ItemGroup>
     <ClCompile Include="..\examples\exception.cpp" />
     <ClCompile Include="..\general\BaseException.cpp" />
-    <ClCompile Include="..\general\SocketException.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\general\BaseException.h" />
     <ClInclude Include="..\general\ExceptionExport.h" />
-    <ClInclude Include="..\general\SocketException.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
